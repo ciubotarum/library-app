@@ -29,9 +29,11 @@ function TodoTable(props) {
                 {/* to put new rows without adding it manualy */}
                 {props.todos.map(todo => (
                     <TodoRowItem
+                        key={todo.rowNumber} 
                         rowNumber={todo.rowNumber}
                         rowDescription={todo.rowDescription}
                         rowAssigned={todo.rowAssigned}
+                        deleteTodo={props.deleteTodo}
                     />
                 ))}
 

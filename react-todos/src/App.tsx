@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 // import TodoRowItem from './components/TodoRowItem';
-import TodoTable from './components/TodoTable';
-import NewTodoForm from './components/NewTodoForm';
+import { TodoTable } from './components/TodoTable';
+import { NewTodoForm } from './components/NewTodoForm';
 
-function App() {
+export const App = () =>  {
 
   const [showAddTodoForm, setShowAddTodoForm] = useState(false);
 
@@ -18,7 +18,7 @@ function App() {
   ]
   )
 
-  const addTodo = (description, assigned) => {
+  const addTodo = (description: string, assigned: string) => {
     // console.log('Our addTodo btn has been clicked!');  // just print the message in the inspect console on browser
     let rowNumber = 0;
     if (todos.length > 0) {
@@ -40,7 +40,7 @@ function App() {
 
   }
 
-  const deleteTodo = (deleteTodoRowNumber) => {
+  const deleteTodo = (deleteTodoRowNumber: number) => {
     let filtered = todos.filter(function (value) {
       return value.rowNumber !== deleteTodoRowNumber;
     });
@@ -102,4 +102,4 @@ function App() {
   );
 }
 
-export default App;
+// export default App;

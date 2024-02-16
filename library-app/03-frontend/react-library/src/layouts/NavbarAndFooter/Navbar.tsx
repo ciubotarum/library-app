@@ -1,6 +1,6 @@
 export const Navbar = () => {
-    return (
-        <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>         {/*create a navigation bar */}
+  return (
+    <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>         {/*create a navigation bar */}
       <div className='container-fluid'>                                           {/* cut of the corner of the pages a little bit */}
         <span className='navbar-brand'> Luv 2 Read</span>                         {/*The text will be displayed in the left hand corner of nav bar */}
         <button className='navbar-toggler' type='button'
@@ -27,5 +27,5 @@ export const Navbar = () => {
         </div>
       </div>
     </nav>
-    )
+  );
 }

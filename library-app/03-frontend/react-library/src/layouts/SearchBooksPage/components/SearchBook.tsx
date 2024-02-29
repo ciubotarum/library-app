@@ -20,7 +20,8 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
                             />
                         }
                     </div>
-                    <div className="d-lg-none d-flex justify-content-center align-items-center">
+                    <div className="d-lg-none d-flex justify-content-center 
+                        align-items-center">
                         {props.book.img ?
                             <img src={props.book.img}
                                 width='123'

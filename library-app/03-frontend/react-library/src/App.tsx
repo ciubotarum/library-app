@@ -16,20 +16,19 @@ const oktaAuth = new OktaAuth(oktaConfig);
 
 export const App = () => {
 
-  const customAuthHandler = () => {
-    navigate('/login');
-  }
+  // const customAuthHandler = () => {
+  //   navigate('/login');
+  // }
 
-  const navigate = useNavigate();
-  const LoginWidgetWrapper = () => <LoginWidget config={oktaConfig} />
+  // const navigate = useNavigate();
 
   const restoreOriginalUri = async (_oktaAuth: any, originalUri: any) => {
-    navigate(toRelativeUrl(originalUri || '/', window.location.origin));
+    window.location.href = toRelativeUrl(originalUri || '/', window.location.origin);
   };
 
   return (
     <div className='d-flex flex-column min-vh-100'>
-      <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri} onAuthRequired={customAuthHandler}>
+      <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri} >
         <BrowserRouter>
           <Navbar />
           <div className='flex-grow-1'>
@@ -38,8 +37,7 @@ export const App = () => {
               <Route path="/home" element={<HomePage />} />
               <Route path='/search' element={<SearchBooksPage />} />
               <Route path='/checkout/:bookId' element={<BookCheckoutPage />} />
-              {/* <Route path='/login' element={<LoginWidget config={oktaConfig} />} /> */}
-              <Route path='/login' element={<LoginWidgetWrapper />} />
+              <Route path='/login' element={<LoginWidget config={oktaConfig} />} />
             </Routes>
           </div>
           <Footer />

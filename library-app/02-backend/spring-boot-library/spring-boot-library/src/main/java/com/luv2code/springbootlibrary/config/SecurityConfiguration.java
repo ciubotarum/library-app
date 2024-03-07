@@ -1,6 +1,7 @@
 package com.luv2code.springbootlibrary.config;
 
 import com.okta.spring.boot.oauth.Okta;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -10,6 +11,7 @@ import org.springframework.web.accept.HeaderContentNegotiationStrategy;
 @Configuration
 public class SecurityConfiguration {
 
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         // Disable Cross Site Request Forgery
@@ -18,14 +20,15 @@ public class SecurityConfiguration {
         // Protect endpoints at /api/<type>/secure
         http.authorizeRequests(configurer ->
                         configurer
-                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
+//                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
                                 .requestMatchers("/api/books/secure/**").authenticated()
-                                .anyRequest().permitAll())
+                )
+//                                .anyRequest().permitAll())
                 .oauth2ResourceServer()
                 .jwt();
 
         // Add CORS filters
-//        http.cors();
+        http.cors();
 
         // Add content negotiation strategy
         http.setSharedObject(ContentNegotiationStrategy.class,

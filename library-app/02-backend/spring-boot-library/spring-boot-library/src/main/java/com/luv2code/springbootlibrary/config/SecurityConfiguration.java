@@ -21,7 +21,8 @@ public class SecurityConfiguration {
         http.authorizeRequests(configurer ->
                         configurer
 //                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
-                                .requestMatchers("/api/books/secure/**").authenticated()
+                                .requestMatchers("/api/books/secure/**",
+                                         "/api/reviews/secure/**").authenticated()
                 )
 //                                .anyRequest().permitAll())
                 .oauth2ResourceServer()

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 @Data
 public class ReviewRequest {
-    private  double raring;
+    private  double rating;
     private Long bookId;
     private Optional<String> reviewDescription;
 }

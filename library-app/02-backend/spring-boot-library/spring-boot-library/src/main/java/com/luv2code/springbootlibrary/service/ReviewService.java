@@ -1,7 +1,6 @@
 package com.luv2code.springbootlibrary.service;
 
 
-import com.luv2code.springbootlibrary.dao.BookRepository;
 import com.luv2code.springbootlibrary.dao.ReviewRepository;
 import com.luv2code.springbootlibrary.entity.Review;
 import com.luv2code.springbootlibrary.requestmodels.ReviewRequest;
@@ -31,7 +30,7 @@ public class ReviewService {
 
         Review review = new Review();
         review.setBookId(reviewRequest.getBookId());
-        review.setRating(reviewRequest.getRaring());
+        review.setRating(reviewRequest.getRating());
         review.setUserEmail(userEmail);
         if (reviewRequest.getReviewDescription().isPresent()) {
             review.setReviewDescription(reviewRequest.getReviewDescription().map(

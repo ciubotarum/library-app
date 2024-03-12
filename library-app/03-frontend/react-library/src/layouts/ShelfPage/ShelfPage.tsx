@@ -1,3 +1,5 @@
+import { Loans } from "./components/Loans";
+
 export const ShelfPage = () => {
     return (
         <div className="container">
@@ -19,9 +21,9 @@ export const ShelfPage = () => {
                 <div className="tab-content" id="nav-tabContent">
                     <div className="tab-name fade show active" id="nav-loans" role="tabpanel"
                     aria-labelledby="nav-loans-tab">
-                        <p>Loans</p>
+                        <Loans/>
                     </div>
-                    <div className="tab-pane fade" id="bav-history" role="tabpanel"
+                    <div className="tab-pane fade" id="nav-history" role="tabpanel"
                     aria-labelledby="nav-history-tab">
                         <p>Checkout History</p>
                     </div>

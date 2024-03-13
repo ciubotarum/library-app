@@ -19,10 +19,11 @@ public class SecurityConfiguration {
 
         // Protect endpoints at /api/<type>/secure
         http.authorizeRequests(configurer ->
-                        configurer
+                                configurer
 //                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
-                                .requestMatchers("/api/books/secure/**",
-                                         "/api/reviews/secure/**").authenticated()
+                                        .requestMatchers("/api/books/secure/**",
+                                                "/api/reviews/secure/**",
+                                                "/api/messages/secure/**").authenticated()
                 )
 //                                .anyRequest().permitAll())
                 .oauth2ResourceServer()

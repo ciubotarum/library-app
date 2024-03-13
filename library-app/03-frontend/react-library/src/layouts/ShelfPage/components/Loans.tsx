@@ -1,8 +1,6 @@
 import { useOktaAuth } from "@okta/okta-react"
 import { useEffect, useState } from "react";
-// import { useSearchParams } from "react-router-dom";
 import ShelfCurrentLoans from "../../../models/ShelfCurrentLoans";
-// import { error } from "console";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { LoansModal } from "./LoansModal";
@@ -14,6 +12,7 @@ export const Loans = () => {
     // Current Loans
     const [shelfCurrentLoans, setShelfCurrentLoans] = useState<ShelfCurrentLoans[]>([]);
     const [isLoadingUserLoans, setIsLoadingUserLoans] = useState(true);
+    const [checkout, setCheckout] = useState(false);
 
     useEffect(() => {
         const fetchUserCurrentLoans = async () => {
@@ -40,7 +39,7 @@ export const Loans = () => {
             setHttpError(error.message);
         })
         window.scrollTo(0, 0);
-    }, [authState]);
+    }, [authState, checkout]);
 
     if (isLoadingUserLoans) {
         return (
@@ -56,6 +55,39 @@ export const Loans = () => {
                 </p>
             </div>
         );
+    }
+
+    async function returnBook(bookId: number) {
+        const url = `http://localhost:8080/api/books/secure/return?bookId=${bookId}`;
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        };
+        const returnResponse = await fetch(url, requestOptions);
+        if (!returnResponse.ok) {
+            throw new Error('Something went wrong!');
+        }
+        setCheckout(!checkout);
+    }
+
+    async function renewLoan(bookId: number) {
+        const url = `http://localhost:8080/api/books/secure/renew/loan?bookId=${bookId}`;
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const returnResponse = await fetch(url, requestOptions);
+        if (!returnResponse.ok) {
+            throw new Error('Something went wrong!');
+        }
+        setCheckout(!checkout);
     }
 
     return (
@@ -118,7 +150,8 @@ export const Loans = () => {
                                     </div>
                                 </div>
                                 <hr />
-                                <LoansModal shelfCurrentLoan={shelfCurrentLoan} mobile={false} />
+                                <LoansModal shelfCurrentLoan={shelfCurrentLoan} mobile={false} returnBook={returnBook}
+                                    renewLoan={renewLoan} />
 
                             </div>
                         ))}
@@ -191,7 +224,8 @@ export const Loans = () => {
                                     </div>
                                 </div>
                                 <hr />
-                                <LoansModal shelfCurrentLoan={shelfCurrentLoan} mobile={true} />
+                                <LoansModal shelfCurrentLoan={shelfCurrentLoan} mobile={true} returnBook={returnBook}
+                                    renewLoan={renewLoan} />
                             </div>
                         ))}
                     </> :

@@ -1,21 +1,10 @@
-<!-- # React and Spring Boot Application -->
-
-<!-- ## Description -->
-<!-- This is a beginner application where I tryied to learn how to build an application using React and Spring Boot.
-This is a one page application where the customer can loan books to read, return them or have to pay fee if he passed the time to return the book.
-There is an Admin page that only admin can access to can change the book number, delete or response to customers questions.  -->
-
-<!-- ########################################################################################################################################################################## -->
-
-<!-- This application is designed as a beginner's project to learn the fundamentals of building a web application using React and Spring Boot. The application consists of a single-page interface where customers can borrow books for reading, return them, or address any inquiries they may have. Additionally, users are notified and charged a fee if they fail to return a book within the specified time frame.
-
-The application also features an admin panel accessible only to authorized administrators. Within the admin panel, administrators have the ability to manage the inventory of books, including updating the number of available copies, deleting books from the system, and responding to customer inquiries and requests.
-
-Overall, this project serves as an educational exercise for individuals looking to gain practical experience in developing full-stack web applications, integrating frontend components with backend functionalities, and implementing user authentication and authorization mechanisms. -->
-
-<!-- ###################################################################################################################################################################### -->
-
 # Book Loan Management System
+
+- [Book Loan Management System](#book-loan-management-system)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [Objective](#objective)
+  - [Technologies Used](#technologies-used)
 
 ## Overview
 

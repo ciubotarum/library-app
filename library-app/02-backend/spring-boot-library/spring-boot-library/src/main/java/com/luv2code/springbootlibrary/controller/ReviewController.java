@@ -20,7 +20,7 @@ public class ReviewController {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
 
         if (userEmail == null) {
-            throw new Exception("User email is misiing");
+            throw new Exception("User email is missing");
         }
         return reviewService.userReviewListed(userEmail, bookId);
     }

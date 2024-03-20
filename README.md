@@ -36,31 +36,9 @@ This project aims to provide practical experience in:
 - Backend: Spring Boot
 - Database: MySQL
 - Authentication: Okta
+- Payment: Stripe
 
-<!-- ## Getting Started
 
-To run the application locally, follow these steps:
 
-1. Clone the repository.
-2. [Additional Setup Instructions, e.g., setting up the database, configuring environment variables, etc.]
-3. Navigate to the project directory and run `npm start` to start the frontend.
-4. Run the Spring Boot application using your preferred IDE or command line tool.
-5. Access the application in your web browser at `http://localhost:3000`. -->
-
-<!-- ## Contributing
-
-Contributions are welcome! If you'd like to contribute to the project, please follow these guidelines:
-- Fork the repository.
-- Create a new branch for your feature/bugfix.
-- Commit your changes and push your branch to your fork.
-- Submit a pull request. -->
-
-<!-- ## License
-
-This project is licensed under the [License Name] - see the [LICENSE](LICENSE) file for details. -->
-
-<!-- ## Acknowledgements
-
-- [Any Acknowledgements, Credits, or References] -->
 
 

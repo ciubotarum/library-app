@@ -24,11 +24,22 @@ services:
     environment:
       DB_HOST: db
     ports:
+      - "8443:8443"
       - "8080:8080"
     networks:
       - my-network
     depends_on:
       - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - my-network
+    depends_on:
+      - db
+      - backend
       
 networks:
   my-network:
@@ -39,8 +50,5 @@ volumes:
 
     # docker-compose up
 
-    #TODO 2: De startat backed pentru a se conecta la baza de date de mai sus
-    #TODO 3: De facut un docker file pentru backend si de facut manual docker run si docker build
-    #TODO 4: Sa integrezimaginea de backend in docker compose (build sa se faca folosing dockerfile din backend)
-    #TODO 5: De creat un network in care sa fie baza de date si bakendul si de verificat daca backendul reuseste sa se conecteze la baza de date
     #TODO 6: De facut un docker file pentru frontend si de pus in aceeasi retea si de verificat dace backendul se conecteaza la frontend
+    #TODO 7: make the data to persist after restart

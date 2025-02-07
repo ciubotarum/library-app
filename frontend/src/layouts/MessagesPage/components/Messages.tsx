@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import MessageModel from "../../../models/MessageModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Pagination } from "../../Utils/Pagination";
-import { useOktaAuth } from "../../../hooks/useOktaAuth";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export const Messages = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
     const [isLoadingMessages, setIsLoadingMessages] = useState(true);
     const [httpError, setHttpError] = useState(null);
 

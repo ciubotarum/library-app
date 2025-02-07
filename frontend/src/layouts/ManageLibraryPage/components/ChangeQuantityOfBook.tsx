@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
-import { useOktaAuth } from "../../../hooks/useOktaAuth";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }> = (props, key) => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
     const [quantity, setQuantity] = useState<number>(0);
     const [remaining, setRemaining] = useState<number>(0);
 

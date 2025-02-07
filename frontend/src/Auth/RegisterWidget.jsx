@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { SpinnerLoading } from "../layouts/Utils/SpinnerLoading";
 import React from "react";
-import { useOktaAuth } from "../hooks/useOktaAuth";
+import { useAuthContext } from "../context/AuthContext";
 
 const RegisterWidget = () => {
-    const { authState, oktaAuth } = useOktaAuth();
+    const { authState, register, login } = useAuthContext();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -17,8 +17,8 @@ const RegisterWidget = () => {
         setError("");
 
         try {
-            await oktaAuth.register(username, password);
-            await oktaAuth.login(username, password);
+            await register(username, password);
+            await login(username, password);
         } catch (err) {
             setError("Registration failed: " + err.message);
         } finally {

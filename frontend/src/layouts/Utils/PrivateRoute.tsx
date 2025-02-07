@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useOktaAuth } from "../../hooks/useOktaAuth";
+import { useAuthContext } from "../../context/AuthContext";
 
 const PrivateRoutes = () => {
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
     if (!authState) {
           // Render loading indicator or handle the case accordingly
           return <div>Loading...</div>;

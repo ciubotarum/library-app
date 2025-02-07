@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useOktaAuth } from "../../../hooks/useOktaAuth";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export const Heros = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
 
     return (
         <div>

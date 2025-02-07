@@ -1,10 +1,10 @@
 import { useState } from "react";
 import MessageModel from "../../../models/MessageModel";
-import { useOktaAuth } from "../../../hooks/useOktaAuth";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export const PostNewMessage = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
     const [title, setTitle] = useState('');
     const [question, setQuestion] = useState('');
     const [displayWarning, setDisplayWarning] = useState(false);

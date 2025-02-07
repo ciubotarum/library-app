@@ -4,11 +4,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
 import PaymentInfoRequest from "../../models/PaymentInfoRequest";
 import { error } from "console";
-import { useOktaAuth } from "../../hooks/useOktaAuth";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const PaymentPage = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
     const [httpError, setHttpError] = useState(false);
     const [submitDisabled, setSubmitDisabled] = useState(false);
     const [fees, setFees] = useState(0);

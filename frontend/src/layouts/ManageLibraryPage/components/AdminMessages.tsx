@@ -5,11 +5,11 @@ import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Pagination } from "../../Utils/Pagination";
 import { AdminMessage } from "./AdminMessage";
 import AdminMessageRequest from "../../../models/AdminMessageRequest";
-import { useOktaAuth } from "../../../hooks/useOktaAuth";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export const AdminMessages = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
 
     // Normal Loading Pieces
     const [isLoadingMessages, setIsLoadingMessages] = useState(true);

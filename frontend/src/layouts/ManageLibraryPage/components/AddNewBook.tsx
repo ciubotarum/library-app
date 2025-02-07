@@ -1,11 +1,11 @@
 import { read } from "fs";
 import { useState } from "react";
 import AddBookRequest from "../../../models/AddBookRequest";
-import { useOktaAuth } from "../../../hooks/useOktaAuth";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export const AddNewBook = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
 
     // New Book
     const [title, setTitle] = useState('');

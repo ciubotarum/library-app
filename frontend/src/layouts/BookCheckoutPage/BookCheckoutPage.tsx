@@ -6,11 +6,11 @@ import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
 import ReviewModel from "../../models/ReviewModel";
 import { LatestReviews } from "./LatestReviews";
 import ReviewRequestModel from "../../models/ReviewRequestModel";
-import { useOktaAuth } from "../../hooks/useOktaAuth";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const BookCheckoutPage = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
 
     const [book, setBook] = useState<BookModel>();
     const [isLoading, setIsLoading] = useState(true);

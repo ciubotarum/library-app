@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 import { AdminMessages } from "./components/AdminMessages";
 import { AddNewBook } from "./components/AddNewBook";
 import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
-import { useOktaAuth } from "../../hooks/useOktaAuth";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const ManageLibraryPage = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
 
     const [changeQuantityOfBooksClick, setChangeQuantityOfBooksClick] = useState(false);
     const [messagesClick, setMessagesClick] = useState(false);

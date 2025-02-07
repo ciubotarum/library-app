@@ -3,10 +3,10 @@ import ShelfCurrentLoans from "../../../models/ShelfCurrentLoans";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { LoansModal } from "./LoansModal";
-import { useOktaAuth } from "../../../hooks/useOktaAuth";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export const Loans = () => {
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
     const [httpError, setHttpError] = useState(null);
 
     // Current Loans

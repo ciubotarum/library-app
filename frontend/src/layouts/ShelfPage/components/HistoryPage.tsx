@@ -3,11 +3,11 @@ import HistoryModel from "../../../models/HistoryModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { Pagination } from "../../Utils/Pagination";
-import { useOktaAuth } from "../../../hooks/useOktaAuth"; // Import the custom hook
+import { useAuthContext } from "../../../context/AuthContext"; // Import the custom hook
 
 export const HistoryPage = () => {
 
-    const { authState } = useOktaAuth();
+    const { authState } = useAuthContext();
     const [isLoadingHistory, setIsLoadingHistory] = useState(true);
     const [httpError, setHttpError] = useState(null);
 

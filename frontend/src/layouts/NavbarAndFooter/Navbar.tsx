@@ -1,18 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
-import { Link } from 'react-router-dom';
-import { useOktaAuth } from '../../hooks/useOktaAuth';
+import { useAuthContext } from '../../context/AuthContext';
 
 export const Navbar = () => {
-
-  const { oktaAuth, authState } = useOktaAuth();
+  const { signOut, authState } = useAuthContext();
 
   if (!authState) {
     return <SpinnerLoading />
   }
 
-  const handleLogout = async () => oktaAuth.signOut();
+  const handleLogout = async () => signOut();
 
   return (
     <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>         {/*create a navigation bar */}
@@ -51,15 +49,21 @@ export const Navbar = () => {
             }
           </ul>
           <ul className='navbar-nav ms-auto'>
-            {!authState.isAuthenticated ?
+            {!authState.isAuthenticated ? (
               <li className='nav-item m-1'>
                 <Link type='button' className='btn btn-outline-light' to='/login'>Sign in</Link>
               </li>
-              :
-              <li>
-                <button className='btn btn-outline-light' onClick={handleLogout}>Logout</button>
-              </li>
-            }
+            ) : (
+              <>
+                <li className='nav-item m-1'>
+                  {/* Display the username from the token claims */}
+                  <span className='navbar-text'>Hello, {authState.accessToken?.claims.sub}</span>
+                </li>
+                <li>
+                  <button className='btn btn-outline-light' onClick={handleLogout}>Logout</button>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

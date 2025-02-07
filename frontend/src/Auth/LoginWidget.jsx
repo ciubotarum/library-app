@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { SpinnerLoading } from "../layouts/Utils/SpinnerLoading";
 import React from "react";
-import { useOktaAuth } from "../hooks/useOktaAuth";
+import { useAuthContext } from "../context/AuthContext";
 
 const LoginWidget = () => {
-    const { authState, oktaAuth } = useOktaAuth();
+    const { authState, login } = useAuthContext();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const LoginWidget = () => {
         setError("");
 
         try {
-            await oktaAuth.login(username, password);
+            await login(username, password);
         } catch (err) {
             setError("Login failed: " + err.message);
         } finally {

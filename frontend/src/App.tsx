@@ -18,13 +18,15 @@ import { MessagesPage } from './layouts/MessagesPage/MessagesPage';
 import { ManageLibraryPage } from './layouts/ManageLibraryPage/ManageLibraryPage';
 import { PaymentPage } from './layouts/PaymentPage/PaymentPage';
 import RegisterWidget from './Auth/RegisterWidget';
+import { AuthProvider } from './context/AuthContext';
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
 export const App = () => {
   return (
     <div className='d-flex flex-column min-vh-100'>
-      <BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
           <Navbar />
           <div className='flex-grow-1'>
             <Routes>
@@ -37,15 +39,16 @@ export const App = () => {
               <Route path='/register' element={<RegisterWidget />} />
               <Route path='/login/callback' element={<LoginCallback />} />
               <Route element={<PrivateRoutes />}>
-                  <Route element={<ShelfPage />} path='/shelf' />
-                  <Route element={<MessagesPage />} path='/messages' />
-                  <Route element={<ManageLibraryPage />} path='/admin' />
-                  <Route element={<PaymentPage />} path='/fees' />
+                <Route element={<ShelfPage />} path='/shelf' />
+                <Route element={<MessagesPage />} path='/messages' />
+                <Route element={<ManageLibraryPage />} path='/admin' />
+                <Route element={<PaymentPage />} path='/fees' />
               </Route>
             </Routes>
           </div>
           <Footer />
-      </BrowserRouter>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 

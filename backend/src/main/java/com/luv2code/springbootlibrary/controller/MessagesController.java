@@ -22,15 +22,15 @@ public class MessagesController {
     @PostMapping("/secure/add/message")
     public void postMessage(@RequestHeader(value = "Authorization") String token,
                             @RequestBody Message messageRequest) {
-        String userEmail = JwtUtils.payloadJWTExtraction(token, "\"sub\"");
+        String userEmail = JwtUtils.getClaim(token, "sub");
         messagesService.postMessage(messageRequest, userEmail);
     }
 
     @PutMapping("/secure/admin/message")
     public void putMessage(@RequestHeader(value = "Authorization") String token,
                            @RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception {
-        String userEmail = JwtUtils.payloadJWTExtraction(token, "\"sub\"");
-        String admin = JwtUtils.payloadJWTExtraction(token, "\"userType\"");
+        String userEmail = JwtUtils.getClaim(token, "sub");
+        String admin = JwtUtils.getClaim(token, "userType");
         if (admin == null || !admin.equals("admin")) {
             throw new Exception("Administration page only.");
         }

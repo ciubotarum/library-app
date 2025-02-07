@@ -34,7 +34,7 @@ public class PaymentController {
     @PutMapping("/payment-complete")
     public ResponseEntity<String> stripePaymentComplete(@RequestHeader(value = "Authorization") String token)
         throws Exception {
-        String userEmail = JwtUtils.payloadJWTExtraction(token, "\"sub\"");
+        String userEmail = JwtUtils.getClaim(token, "sub");
         if (userEmail == null) {
             throw new Exception("User email is missing");
         }

@@ -2,7 +2,7 @@ package com.luv2code.springbootlibrary.controller;
 
 import com.luv2code.springbootlibrary.requestmodels.ReviewRequest;
 import com.luv2code.springbootlibrary.service.ReviewService;
-import com.luv2code.springbootlibrary.utils.ExtractJWT;
+import com.luv2code.springbootlibrary.utils.JwtUtils;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("https://localhost:3000")
@@ -17,7 +17,7 @@ public class ReviewController {
     @GetMapping("/secure/user/book")
     public Boolean reviewBookByUser(@RequestHeader(value = "Authorization") String token,
                                     @RequestParam Long bookId) throws Exception {
-        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        String userEmail = JwtUtils.payloadJWTExtraction(token, "\"sub\"");
 
         if (userEmail == null) {
             throw new Exception("User email is missing");
@@ -28,7 +28,7 @@ public class ReviewController {
     @PostMapping("/secure")
     public void postReview(@RequestHeader(value="Authorization") String token,
                            @RequestBody ReviewRequest reviewRequest) throws Exception {
-        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        String userEmail = JwtUtils.payloadJWTExtraction(token, "\"sub\"");
         if (userEmail == null) {
             throw new Exception("User email is missing");
         }

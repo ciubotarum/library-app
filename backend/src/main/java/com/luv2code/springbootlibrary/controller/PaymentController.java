@@ -2,7 +2,7 @@ package com.luv2code.springbootlibrary.controller;
 
 import com.luv2code.springbootlibrary.requestmodels.PaymentInfoRequest;
 import com.luv2code.springbootlibrary.service.PaymentService;
-import com.luv2code.springbootlibrary.utils.ExtractJWT;
+import com.luv2code.springbootlibrary.utils.JwtUtils;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class PaymentController {
     @PutMapping("/payment-complete")
     public ResponseEntity<String> stripePaymentComplete(@RequestHeader(value = "Authorization") String token)
         throws Exception {
-        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        String userEmail = JwtUtils.payloadJWTExtraction(token, "\"sub\"");
         if (userEmail == null) {
             throw new Exception("User email is missing");
         }

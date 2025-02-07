@@ -1,9 +1,9 @@
-import { useOktaAuth } from "@okta/okta-react"
 import { useEffect, useState } from "react";
 import ShelfCurrentLoans from "../../../models/ShelfCurrentLoans";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { LoansModal } from "./LoansModal";
+import { useOktaAuth } from "../../../hooks/useOktaAuth";
 
 export const Loans = () => {
     const { authState } = useOktaAuth();

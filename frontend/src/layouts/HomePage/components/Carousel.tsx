@@ -26,20 +26,21 @@ export const Carousel = () => {
 
             const responseData = responseJson._embedded.books;
 
-            const loadedBooks: BookModel[] = [];
-
-            for (const key in responseData) {
-                loadedBooks.push({
-                    id: responseData[key].id,
-                    title: responseData[key].title,
-                    author: responseData[key].author,
-                    copies: responseData[key].copies,
-                    copiesAvailable: responseData[key].copiesAvailable,
-                    category: responseData[key].category,
-                    img: responseData[key].img
-                });
+            if (!Array.isArray(responseData) || responseData.length === 0) {
+                throw new Error("No books received from API");
             }
-
+            
+            const loadedBooks: BookModel[] = responseData
+                .filter((book: any) => book?.id) // 🔍 Ensure book has an ID
+                .map((book: any) => ({
+                    id: book.id,
+                    title: book.title,
+                    author: book.author,
+                    copies: book.copies,
+                    copiesAvailable: book.copiesAvailable,
+                    category: book.category,
+                    img: book.img
+                }));
             setBooks(loadedBooks);
             setIsLoading(false);
         };

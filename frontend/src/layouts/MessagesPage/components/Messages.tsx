@@ -1,8 +1,8 @@
-import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import MessageModel from "../../../models/MessageModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Pagination } from "../../Utils/Pagination";
+import { useOktaAuth } from "../../../hooks/useOktaAuth";
 
 export const Messages = () => {
 

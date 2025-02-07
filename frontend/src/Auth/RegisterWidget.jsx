@@ -1,25 +1,26 @@
 import { useState } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { SpinnerLoading } from "../layouts/Utils/SpinnerLoading";
 import React from "react";
 import { useOktaAuth } from "../hooks/useOktaAuth";
 
-const LoginWidget = () => {
+const RegisterWidget = () => {
     const { authState, oktaAuth } = useOktaAuth();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError("");
 
         try {
+            await oktaAuth.register(username, password);
             await oktaAuth.login(username, password);
         } catch (err) {
-            setError("Login failed: " + err.message);
+            setError("Registration failed: " + err.message);
         } finally {
             setLoading(false);
         }
@@ -39,10 +40,10 @@ const LoginWidget = () => {
                 <div className="col-md-6">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="text-center">Login</h3>
+                            <h3 className="text-center">Register</h3>
                         </div>
                         <div className="card-body">
-                            <form onSubmit={handleLogin}>
+                            <form onSubmit={handleRegister}>
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
                                     <input
@@ -66,8 +67,7 @@ const LoginWidget = () => {
                                     />
                                 </div>
                                 {error && <div className="alert alert-danger mt-3">{error}</div>}
-                                <button type="submit" className="btn btn-primary btn-block mt-3">Login</button>
-                                <Link to="/register" className="btn btn-link btn-block mt-2">Register</Link>
+                                <button type="submit" className="btn btn-primary btn-block mt-3">Register</button>
                             </form>
                         </div>
                     </div>
@@ -77,5 +77,4 @@ const LoginWidget = () => {
     );
 };
 
-export default LoginWidget;
-
+export default RegisterWidget;

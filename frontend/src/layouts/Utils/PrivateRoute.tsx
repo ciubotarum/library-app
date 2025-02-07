@@ -1,5 +1,5 @@
-import { useOktaAuth } from "@okta/okta-react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useOktaAuth } from "../../hooks/useOktaAuth";
 
 const PrivateRoutes = () => {
     const { authState } = useOktaAuth();

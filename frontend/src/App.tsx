@@ -17,35 +17,14 @@ import PrivateRoutes from './layouts/Utils/PrivateRoute';
 import { MessagesPage } from './layouts/MessagesPage/MessagesPage';
 import { ManageLibraryPage } from './layouts/ManageLibraryPage/ManageLibraryPage';
 import { PaymentPage } from './layouts/PaymentPage/PaymentPage';
+import RegisterWidget from './Auth/RegisterWidget';
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
 export const App = () => {
-  //  const { authState } = useOktaAuth();
-
-  // // Check if authState is null
-  // if (!authState) {
-  //   // Render loading indicator or handle the case accordingly
-  //   return <div>Loading...</div>;
-  // }
-
-  // // Destructure authState after ensuring it's not null
-  // const { isAuthenticated } = authState;
-
-  // const customAuthHandler = () => {
-  //   navigate('/login');
-  // }
-
-  // const navigate = useNavigate();
-
-  const restoreOriginalUri = async (_oktaAuth: any, originalUri: any) => {
-    window.location.href = toRelativeUrl(originalUri || '/', window.location.origin);
-  };
-
   return (
     <div className='d-flex flex-column min-vh-100'>
       <BrowserRouter>
-        <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri} >
           <Navbar />
           <div className='flex-grow-1'>
             <Routes>
@@ -54,7 +33,8 @@ export const App = () => {
               <Route path='/search' element={<SearchBooksPage />} />
               <Route path='/reviewlist/:bookId' element={<ReviewLIstPage />} />
               <Route path='/checkout/:bookId' element={<BookCheckoutPage />} />
-              <Route path='/login' element={<LoginWidget config={oktaConfig} />} />
+              <Route path='/login' element={<LoginWidget />} />
+              <Route path='/register' element={<RegisterWidget />} />
               <Route path='/login/callback' element={<LoginCallback />} />
               <Route element={<PrivateRoutes />}>
                   <Route element={<ShelfPage />} path='/shelf' />
@@ -65,7 +45,6 @@ export const App = () => {
             </Routes>
           </div>
           <Footer />
-        </Security>
       </BrowserRouter>
     </div>
   );

@@ -1,5 +1,5 @@
-import { useOktaAuth } from "@okta/okta-react";
 import { Link } from "react-router-dom";
+import { useOktaAuth } from "../../../hooks/useOktaAuth";
 
 export const Heros = () => {
 

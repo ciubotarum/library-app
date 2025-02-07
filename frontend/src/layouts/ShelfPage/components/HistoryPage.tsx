@@ -1,9 +1,9 @@
-import { useOktaAuth } from "@okta/okta-react"
 import { useEffect, useState } from "react";
 import HistoryModel from "../../../models/HistoryModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { Pagination } from "../../Utils/Pagination";
+import { useOktaAuth } from "../../../hooks/useOktaAuth"; // Import the custom hook
 
 export const HistoryPage = () => {
 

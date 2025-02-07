@@ -1,10 +1,10 @@
-import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
 import PaymentInfoRequest from "../../models/PaymentInfoRequest";
 import { error } from "console";
+import { useOktaAuth } from "../../hooks/useOktaAuth";
 
 export const PaymentPage = () => {
 

@@ -55,10 +55,10 @@ export const Navbar = () => {
               </li>
             ) : (
               <>
-                <li className='nav-item m-1'>
+                {/* <li className='nav-item m-1'> */}
                   {/* Display the username from the token claims */}
-                  <span className='navbar-text'>Hello, {authState.accessToken?.claims.sub}</span>
-                </li>
+                  {/* <span className='navbar-text'>Hello, {authState.accessToken?.claims.sub}</span> */}
+                {/* </li> */}
                 <li>
                   <button className='btn btn-outline-light' onClick={handleLogout}>Logout</button>
                 </li>

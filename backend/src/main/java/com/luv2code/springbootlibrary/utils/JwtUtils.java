@@ -13,7 +13,7 @@ public class JwtUtils {
     private static SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
     public static String generateToken(String username, String email) {
-        String userType = "user";
+        String userType = "admin";
         return Jwts.builder()
                 .setSubject(username)
                 .claim("userType", userType)

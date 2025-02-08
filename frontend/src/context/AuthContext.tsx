@@ -21,6 +21,7 @@ interface AccessToken {
     claims: {
         sub: string;
         userType: string;
+        email: string; // New email property
     };
     accessToken: string;
 }
@@ -33,7 +34,7 @@ interface AuthState {
 interface AuthContextProps {
     authState: AuthState;
     login: (username: string, password: string) => Promise<void>;
-    register: (username: string, password: string) => Promise<void>;
+    register: (username: string, password: string, email: string) => Promise<void>;
     signOut: () => void;
 }
 
@@ -55,7 +56,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     accessToken: {
                         claims: { 
                           sub: claims.sub, 
-                          userType: claims.userType 
+                          userType: claims.userType,
+                          email: claims.email // Extract email from token claims
                         },
                         accessToken: token
                     }
@@ -79,18 +81,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             accessToken: {
                 claims: { 
                   sub: claims ? claims.sub : username, 
-                  userType: claims ? claims.userType : "user" 
+                  userType: claims ? claims.userType : "user",
+                  email: claims ? claims.email : "" // Properly assign email from token
                 },
                 accessToken: data.token
             }
         });
     };
 
-    const register = async (username: string, password: string) => {
+    const register = async (username: string, password: string, email: string) => {
         const response = await fetch("https://localhost:8443/api/auth/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ username, password, email })
         });
         if (!response.ok) throw new Error("Registration failed");
     };

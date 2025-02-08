@@ -15,7 +15,7 @@ export const Heros = () => {
 
                     <div className="col-4 col-md-4 container d-flex justify-content-center align-items-center">
                         <div className="ml-2">
-                            <h1>What have you benn reading?</h1>
+                            <h1>What have you been reading?</h1>
                             <p className="lead">
                                 The library team would love to know what you have been reading.
                                 Whether it is to learn a new skill or grow within one,

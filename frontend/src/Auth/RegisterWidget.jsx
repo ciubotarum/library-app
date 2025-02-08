@@ -8,6 +8,8 @@ const RegisterWidget = () => {
     const { authState, register, login } = useAuthContext();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState(""); // New confirm password state
+    const [email, setEmail] = useState(""); // Email field state
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -16,8 +18,15 @@ const RegisterWidget = () => {
         setLoading(true);
         setError("");
 
+        // Validate that password and confirmPassword match
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            setLoading(false);
+            return;
+        }
+
         try {
-            await register(username, password);
+            await register(username, password, email);
             await login(username, password);
         } catch (err) {
             setError("Registration failed: " + err.message);
@@ -55,7 +64,19 @@ const RegisterWidget = () => {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
+                                {/* New email input field */}
+                                <div className="form-group mt-3">
+                                    <label htmlFor="email">Email</label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mt-3">
                                     <label htmlFor="password">Password</label>
                                     <input
                                         type="password"
@@ -66,8 +87,22 @@ const RegisterWidget = () => {
                                         required
                                     />
                                 </div>
+                                {/* New password confirmation field */}
+                                <div className="form-group mt-3">
+                                    <label htmlFor="confirmPassword">Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        id="confirmPassword"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
                                 {error && <div className="alert alert-danger mt-3">{error}</div>}
-                                <button type="submit" className="btn btn-primary btn-block mt-3">Register</button>
+                                <button type="submit" className="btn btn-primary btn-block mt-3">
+                                    Register
+                                </button>
                             </form>
                         </div>
                     </div>

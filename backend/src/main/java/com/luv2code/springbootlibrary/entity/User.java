@@ -3,9 +3,6 @@ package com.luv2code.springbootlibrary.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Entity
 @Table(name = "users")
 @Data
@@ -20,6 +17,9 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "email", nullable = false)
+    private String email;
 
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin;

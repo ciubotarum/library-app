@@ -30,6 +30,7 @@ public class AuthenticationController {
         User user = new User();
         user.setUsername(registerRequest.getUsername());
         user.setPassword(registerRequest.getPassword());
+        user.setEmail(registerRequest.getEmail());
         userService.registerUser(user);
     }
 
@@ -37,7 +38,7 @@ public class AuthenticationController {
     public TokenResponse login(@RequestBody LoginRequest loginRequest) throws Exception {
         Optional<User> user = userService.findByUsername(loginRequest.getUsername());
         if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
-            String token = JwtUtils.generateToken(user.get().getUsername());
+            String token = JwtUtils.generateToken(user.get().getUsername(), user.get().getEmail());
             return new TokenResponse(token);
         }
         throw new Exception("Invalid username or password");
@@ -74,10 +75,12 @@ public class AuthenticationController {
     private static class RegisterRequest {
         private String username;
         private String password;
+        private String email;
 
-        public RegisterRequest(String username, String password) {
+        public RegisterRequest(String username, String password, String email) {
             this.username = username;
             this.password = password;
+            this.email = email;
         }
 
         public String getUsername() {
@@ -86,6 +89,10 @@ public class AuthenticationController {
 
         public String getPassword() {
             return password;
+        }
+
+        public String getEmail() {
+            return email;
         }
     }
 

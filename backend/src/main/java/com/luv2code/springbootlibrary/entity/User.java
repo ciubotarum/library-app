@@ -18,13 +18,17 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "is_admin", nullable = false)
-    private boolean isAdmin;
+    @Column(name = "user_type", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserType userType = UserType.USER;
 
-    public User() {
-        this.isAdmin = false;
-    }
+//    @Column(name = "is_admin", nullable = false)
+//    private boolean isAdmin;
+
+//    public User() {
+//        this.isAdmin = false;
+//    }
 }

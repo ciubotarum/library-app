@@ -23,8 +23,13 @@ public class AuthenticationController {
     @PostMapping("/register")
     public void register(@RequestBody RegisterRequest registerRequest) {
         Optional<User> existingUser = userService.findByUsername(registerRequest.getUsername());
+        Optional<User> existingEmail = userService.findByEmail(registerRequest.getEmail());
         if (existingUser.isPresent()) {
             throw new IllegalArgumentException("Username already exists");
+        }
+
+        if (existingEmail.isPresent()) {
+            throw new IllegalArgumentException("Email already exists");
         }
 
         User user = new User();

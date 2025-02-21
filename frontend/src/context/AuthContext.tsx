@@ -21,7 +21,7 @@ interface AccessToken {
     claims: {
         sub: string;
         userType: string;
-        email: string; // New email property
+        email: string;
     };
     accessToken: string;
 }
@@ -57,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                         claims: { 
                           sub: claims.sub, 
                           userType: claims.userType,
-                          email: claims.email // Extract email from token claims
+                          email: claims.email 
                         },
                         accessToken: token
                     }
@@ -81,8 +81,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             accessToken: {
                 claims: { 
                   sub: claims ? claims.sub : username, 
-                  userType: claims ? claims.userType : "user",
-                  email: claims ? claims.email : "" // Properly assign email from token
+                  userType: claims && claims.userType ? claims.userType.toUpperCase() : "USER",
+                  email: claims ? claims.email : "" 
                 },
                 accessToken: data.token
             }

@@ -22,7 +22,7 @@ public class AdminController {
     public void increaseBookQuantity(@RequestHeader(value = "Authorization") String token,
                                      @RequestParam Long bookId) throws Exception {
         String admin = JwtUtils.getClaim(token, "userType");
-        if (admin == null || !admin.equals("admin")) {
+        if (admin == null || !admin.equalsIgnoreCase("admin")) {
             throw new Exception("Administration page only");
         }
         adminService.increaseBookQuantity(bookId);
@@ -32,7 +32,7 @@ public class AdminController {
     public void decreaseBookQuantity(@RequestHeader(value = "Authorization") String token,
                                      @RequestParam Long bookId) throws Exception {
         String admin = JwtUtils.getClaim(token, "userType");
-        if (admin == null || !admin.equals("admin")) {
+        if (admin == null || !admin.equalsIgnoreCase("admin")) {
             throw new Exception("Administration page only");
         }
         adminService.decreaseBookQuantity(bookId);
@@ -42,7 +42,7 @@ public class AdminController {
     public void postBook(@RequestHeader(value = "Authorization") String token,
                          @RequestBody AddBookRequest addBookRequest) throws Exception {
         String admin = JwtUtils.getClaim(token, "userType");
-        if (admin == null || !admin.equals("admin")) {
+        if (admin == null || !admin.equalsIgnoreCase("admin")) {
             throw new Exception("Administration page only");
         }
         adminService.postBook(addBookRequest);
@@ -52,7 +52,7 @@ public class AdminController {
     public void deleteBook(@RequestHeader(value = "Authorization") String token,
                            @RequestParam Long bookId) throws Exception {
         String admin = JwtUtils.getClaim(token, "userType");
-        if (admin == null || !admin.equals("admin")) {
+        if (admin == null || !admin.equalsIgnoreCase("admin")) {
             throw new Exception("Administration page only");
         }
         adminService.deleteBook(bookId);

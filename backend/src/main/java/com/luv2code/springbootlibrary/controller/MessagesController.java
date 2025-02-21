@@ -31,7 +31,7 @@ public class MessagesController {
                            @RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception {
         String userEmail = JwtUtils.getClaim(token, "sub");
         String admin = JwtUtils.getClaim(token, "userType");
-        if (admin == null || !admin.equals("admin")) {
+        if (admin == null || !admin.equalsIgnoreCase("admin")) {
             throw new Exception("Administration page only.");
         }
         messagesService.putMessage(adminQuestionRequest, userEmail);

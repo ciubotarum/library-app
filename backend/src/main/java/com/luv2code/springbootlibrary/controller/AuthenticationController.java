@@ -1,6 +1,7 @@
 package com.luv2code.springbootlibrary.controller;
 
 import com.luv2code.springbootlibrary.entity.User;
+import com.luv2code.springbootlibrary.entity.UserType;
 import com.luv2code.springbootlibrary.service.UserService;
 import com.luv2code.springbootlibrary.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class AuthenticationController {
     public TokenResponse login(@RequestBody LoginRequest loginRequest) throws Exception {
         Optional<User> user = userService.findByUsername(loginRequest.getUsername());
         if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
-            String token = JwtUtils.generateToken(user.get().getUsername(), user.get().getEmail());
+            String token = JwtUtils.generateToken(user.get());
             return new TokenResponse(token);
         }
         throw new Exception("Invalid username or password");
@@ -54,7 +55,7 @@ public class AuthenticationController {
         Optional<User> user = userService.findByUsername(username);
         if (user.isPresent()) {
             User existingUser = user.get();
-            existingUser.setAdmin(true);
+            existingUser.setUserType(UserType.ADMIN);
             userService.registerUser(existingUser);
         } else {
             throw new IllegalArgumentException("User not found");

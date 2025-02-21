@@ -1,5 +1,6 @@
 package com.luv2code.springbootlibrary.utils;
 
+import com.luv2code.springbootlibrary.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.oauth2.jwt.JwtException;
@@ -12,12 +13,12 @@ public class JwtUtils {
     private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
     private static SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
-    public static String generateToken(String username, String email) {
-        String userType = "admin";
+    public static String generateToken(User user) {
+//        String userType = "admin";
         return Jwts.builder()
-                .setSubject(username)
-                .claim("userType", userType)
-                .claim("email", email)
+                .setSubject(user.getUsername())
+                .claim("userType", user.getUserType().toString())
+                .claim("email", user.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(key)
                 .compact();

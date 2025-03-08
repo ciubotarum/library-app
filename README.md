@@ -41,6 +41,7 @@ This project aims to provide practical experience in:
 - Backend: Spring Boot
 - Database: MySQL (Docker)
 - Authentication: Okta
+  - migrate to a custom login system due new updates requiring 2 factor authentication
 - Payment: Stripe
 
 ## Setup Instructions
